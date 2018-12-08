@@ -1,0 +1,104 @@
+******************************** AcademicPerformance.prg ********
+* Курсовая работа                                               *
+* По курсу "Базы данных"                                        *
+* Приложение на базе форм в среде Microsoft Visual FoxPro 9.0"  *
+* Довженко, Слесарева, Безлуцкая, Валентинова М80-307           *
+*****************************************************************
+*
+* Внесение изменений в системные настройки Visual FoxPro
+CLEAR MACROS         && Отмена системных назначений клавиш F1-F12
+SET RESOURCE ON      && Cохранять настройки
+                     && в таблице Foxuser.dbf
+SET EXCLUSIVE OFF    && Базы данных доступны всем
+SET MULTILOCKS ON    && Блокировка нескольких записей сразу
+SET TALK OFF         && Не отображать результаты выполнения
+                     && команд APPEND, AVERAGE,CALCULATE и др.
+SET DELETED ON       && Помеченные к удалению записи невидимы
+SET SAFETY OFF       && Не выдавать запрос на уничтожение
+SET STATUS BAR OFF   && Не показывать нижнюю статусную строку
+* Подключение первого файла, содержащего процедуры
+* FileProc - имя файла
+SET PATH TO DBF,USER,FORM,REPORT,PROGRAM  
+SET PROCEDURE TO fileproc   
+* Подключение второго и последующих
+* SET PROCEDURE TO <имя файла> ADDITIVE
+* SET PROCEDURE TO <имя файла> ADDITIVE
+* Пути поиска
+*SET PATH TO DBF,USER,FORM,ICO,REPORT,PROGRAM  
+* Вызов процедуры описания глобальных переменных
+DO ADJUSTMENT                 && Находится в файле FileProc
+
+* Модификация главного окна FOX PRO
+_SCREEN.CAPTION=[Успеваемость студентов]
+ _SCREEN.Visible = .T.
+*_SCREEN.ICON=[Title.ICO]
+_SCREEN.MINBUTTON=.T.         && Есть кнопка свертывания
+_SCREEN.MAXBUTTON=.T.         && Есть кнопка развертывания
+_SCREEN.WINDOWTYPE=1          && Тип окна
+
+* Создание папки для временных выборок
+* Если папка уже имеется на компьютере, то возникнет ошибка
+* с кодом 1961. Она будет перехвачена процедурой ERRORHND,
+* которая находится в процедурном файле FileProc
+* В правом углу экрана появится приглашение к работе
+   *-----------------------------------------------------*
+   * Папка для временных файлов C:\WINNT\TEMP имеется!   *
+   * Можно работать!                                     *
+   *-----------------------------------------------------* 
+*MKDIR C:\WINNT             
+*MKDIR C:\WINNT\TEMP       
+* Определение размеров главного окна программного комплекса
+* в зависимости от разрешения дисплея рабочей станции
+DO CASE
+   CASE SYSMETRIC(1)=1600         && 1600*1280 пикселей
+       _SCREEN.HEIGHT=1272         
+       _SCREEN.WIDTH=1588        
+   CASE SYSMETRIC(1)=1280         && 1280*1024 пикселей
+       _SCREEN.HEIGHT=970         
+       _SCREEN.WIDTH=1272         
+   CASE SYSMETRIC(1)=1024         && 1024*768 пикселей
+       _SCREEN.HEIGHT=710         
+       _SCREEN.WIDTH=1016        
+   CASE SYSMETRIC(1)=800          && 800*600 пикселей
+       _SCREEN.HEIGHT=540         
+       _SCREEN.WIDTH=795          
+ENDCASE
+_SCREEN.WINDOWSTATE=2    && 2-Развернуть во весь экран 0-назад
+_SCREEN.AUTOCENTER=.F.   && Размещение НЕ по центру экрана
+_SCREEN.BORDERSTYLE=3    && Обрамление двойная линия   
+* Цвет фона
+_SCREEN.BackColor=RGB(192,192,192)         
+* Размещение картинки в главном окне программного комплекса
+*IF FILE('C:\WINNT\TEMP\PICTURE.JPG')
+ *  _SCREEN.PICTURE=[C:\WINNT\TEMP\PICTURE.JPG]
+*ENDIF
+*_SCREEN.FONTNAME=[ARIAL CYR]            && Шрифт
+*_SCREEN.FONTSIZE=9                      && Размер шрифта
+*_SCREEN.ICON=[HOUSE.ICO]                && Иконка   
+* Подтверждение выхода из программы
+* Запуск процедуры REALQUIT при закрытии окна Visual FoxPro
+ON SHUTDOWN DO REALQUIT  
+DO FORM START            && Заставка
+DO FORM LOGIN            && Запуск формы контроля доступа
+
+IF SuperVisor=.F.
+   * Идентификация не выполнена
+   DO STOP               && Завершение работы
+ENDIF
+   
+IF Administration=.T.
+   * Идентификация не выполнена
+   DO FORM ADMINISTRATION               && Завершение работы
+ENDIF
+IF Teacher=.T.
+   * Идентификация не выполнена
+   DO FORM TEACHER              && Завершение работы
+ENDIF
+IF Student=.T.
+   * Идентификация не выполнена
+   DO FORM STUDENT              && Завершение работы
+ENDIF
+* Запуск обработчика событий Visual FoxPro
+READ EVENTS
+DO STOP        && Процедура STOP находится в файле FileProc
+
