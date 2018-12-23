@@ -60,8 +60,8 @@ PUBLIC DISK                   && Папка, из которой запушен комплекс
 DISK=SYS(5)+SYS(2003)
 * Задержка при пошаговом поиске в секундах
 _DblClick=0.5       
-PUBLIC FAMILY                 && Фамилия работника
-FAMILY=[Разработчик комплекса]
+PUBLIC LOGIN                 && Фамилия работника
+LOGIN = 0
 PUBLIC SuperVisor             && Признак идентификации
 Supervisor = .F.
 
@@ -70,6 +70,9 @@ Supervisor = .F.
 PUBLIC Administration, Teacher, Student
 STORE .F. TO Administration, Teacher, Student
 RETURN
+
+&&PUBLIC is_add
+&&is_add = .F.
 
 
 Function CrKod               && Зашифровка пароля

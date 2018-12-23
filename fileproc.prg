@@ -71,6 +71,9 @@ PUBLIC Administration, Teacher, Student
 STORE .F. TO Administration, Teacher, Student
 RETURN
 
+PUBLIC is_add
+is_add = .F.
+
 
 Function CrKod               && Зашифровка пароля
 PARAMETERS cPassword
