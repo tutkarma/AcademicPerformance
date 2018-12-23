@@ -1,0 +1,28 @@
+
+SELECT AVG(Performance.marks) AS medium, Performance.id_pupil,;
+  Group.gr_number, Pupil.surname, Pupil.name;
+ FROM ;
+     Performance,;
+    Pupil,;
+    Group;
+ WHERE  Performance.id_pupil = Pupil.id_pupil;
+   AND  Group.id_group = Pupil.id_group;
+ GROUP BY Performance.id_pupil, Pupil.id_group, Pupil.surname,;
+  Pupil.name;
+ INTO CURSOR Pumarks  NOFILTER
+
+SELECT Pumarks.id_pupil, Pumarks.surname, Pumarks.name, Pumarks.gr_number; 
+FROM Pumarks; 
+WHERE Pumarks.medium = 5; 
+INTO CURSOR fivepup NOFILTER
+
+DROP TABLE avgfive
+CREATE TABLE avgfive;
+  (id_pupil i,;
+  surname c(50),;
+  name c(50),;
+  gr_number i)
+
+INSERT INTO avgfive;
+SELECT *;
+FROM fivepup

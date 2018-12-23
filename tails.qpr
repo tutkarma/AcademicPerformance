@@ -1,0 +1,27 @@
+SELECT MIN(Performance.marks) AS minimum, Performance.id_pupil,;
+  Group.gr_number, Pupil.surname, Pupil.name;
+ FROM ;
+     Performance,;
+    Pupil ;
+    INNER JOIN Group ;
+   ON  Pupil.id_group = Group.id_group;
+ WHERE  Performance.id_pupil = Pupil.id_pupil;
+ GROUP BY Performance.id_pupil, Pupil.id_group, Pupil.surname,;
+  Pupil.name;
+ INTO CURSOR Pumarks  NOFILTER
+
+SELECT Pumarks.id_pupil, Pumarks.surname, Pumarks.name, Pumarks.gr_number; 
+FROM Pumarks; 
+WHERE Pumarks.minimum = 2;
+INTO CURSOR tailpup NOFILTER
+
+DROP TABLE tails
+CREATE TABLE tails;
+  (id_pupil i,;
+  surname c(50),;
+  name c(50),;
+  gr_number i)
+
+INSERT INTO tails;
+SELECT *;
+FROM tailpup
