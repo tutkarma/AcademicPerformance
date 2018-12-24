@@ -1,0 +1,8 @@
+IF DATE != 0 THEN
+SELECT Pupil.id_pupil;
+ FROM ;
+     pupil
+ELSE 
+SELECT pupil.name FROM pupil
+ENDIF
+

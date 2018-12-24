@@ -1,0 +1,7 @@
+SELECT Exam.data;
+ FROM ;
+     exam,;
+    teacher;
+ WHERE  Exam.id_teacher = Teacher.id_teacher;
+   AND  Teacher.surname = ( family );
+ INTO CURSOR temp  
