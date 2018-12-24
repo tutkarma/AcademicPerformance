@@ -1,0 +1,13 @@
+SELECT Exam.data AS data, Subject.sbj_name AS subject,;
+  Group.gr_number AS group;
+ FROM ;
+     exam,;
+    teacher,;
+    subject,;
+    group;
+ WHERE ( (  Exam.id_group = Group.id_group;
+   AND  Subject.id_subject = Exam.id_subject );
+   AND  Teacher.id_teacher = Exam.id_teacher );
+   AND  Teacher.surname = ( family );
+ INTO CURSOR temp  
+

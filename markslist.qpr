@@ -1,0 +1,14 @@
+SELECT Exam.data AS data, Performance.marks AS mark,;
+  Subject.sbj_name AS subject, Teacher.surname;
+ FROM ;
+     exam,;
+    performance,;
+    subject,;
+    teacher,;
+    pupil;
+ WHERE ( ( (  Exam.id_exam = Performance.id_exam;
+   AND  Subject.id_subject = Exam.id_subject );
+   AND  Teacher.id_teacher = Exam.id_teacher );
+   AND  Pupil.id_pupil = Performance.id_pupil );
+   AND  Pupil.surname = ( family );
+ INTO CURSOR temp  
