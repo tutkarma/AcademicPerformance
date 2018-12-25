@@ -80,8 +80,6 @@ _SCREEN.BackColor=RGB(192,192,192)
 ON SHUTDOWN DO REALQUIT  
 DO FORM START            && Заставка
 DO FORM LOGIN            && Запуск формы контроля доступа
-*SuperVisor=.T.
-LOCAL lnMsgResult
 
 IF SuperVisor=.F.
    * Идентификация не выполнена

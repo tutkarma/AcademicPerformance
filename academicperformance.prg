@@ -94,7 +94,7 @@ IF Teacher=.T.
    * Идентификация не выполнена
    DO FORM TEACHER              && Завершение работы
 ENDIF
-IF Student=.T.
+IF CAST(Student AS Logical)=.T.
    * Идентификация не выполнена
    DO FORM STUDENT              && Завершение работы
 ENDIF
